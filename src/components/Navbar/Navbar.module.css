@@ -1,0 +1,31 @@
+.nav {
+    grid-area: nav;
+    background: lightgray;
+    padding: 10px 12px;
+  }
+
+  .nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font: 20px/24px Arial;
+    margin-bottom: 24px;
+  }
+  .nav ul li {
+    margin: 0 0 10px;
+  }
+  .nav a {
+    text-decoration: none;
+    color: darkred;
+  }
+
+.nav .active {
+  color: black;
+}
+.nav h2 {
+  font-size: 24px;
+}
+.list {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+}

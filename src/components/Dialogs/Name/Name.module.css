@@ -1,0 +1,8 @@
+.messages__name{
+  list-style: square;
+  margin-bottom: 24px;
+}
+
+.messages__name .active{
+  text-decoration: underline;
+}

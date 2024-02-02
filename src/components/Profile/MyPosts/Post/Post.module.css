@@ -1,0 +1,16 @@
+.profile__post{
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto 1fr;
+  grid-gap: 12px;
+  margin-bottom: 24px;
+}
+
+.profile__dot{
+  display: inline-block;
+  vertical-align: top;
+  width: 24px;
+  height: 24px;
+  background-color: crimson;
+  border-radius: 50%;
+}

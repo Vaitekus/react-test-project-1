@@ -1,0 +1,10 @@
+.messages__item{
+  grid-column: auto/span 10;
+  padding: 16px;
+  border: 1px solid darkred;
+  border-radius: 4px;
+}
+
+.position{
+  grid-column-start: 3;
+}
