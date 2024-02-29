@@ -1,16 +1,31 @@
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from "react";
+import {addPostActionCreator, updatePostTextActionCreator} from "../../../redux/store";
 
+// let addPostActionCreator = () => {
+//   return {
+//     type: 'ADD-POST'
+//   }
+// }
+//
+// let updateTextActionCreator = (text) => {
+//   return {
+//     type: 'UPDATE-NEW-POST-TEXT',
+//     newText: text
+//   }
+// }
 const MyPosts = (props) => {
   let postsElements = props.posts.map( (post, index) => <Post message={post.text} key={index}/>);
   let newPostElement = React.createRef();
 
-  let addPost = (event) => {
-    let text = newPostElement.current.value;
-    event.preventDefault();
+  let addPost = () => {
+    props.dispatch(addPostActionCreator());
+  }
 
-    props.addPost(text);
+  let updateTextareaText = () => {
+    let text = newPostElement.current.value;
+    props.dispatch(updatePostTextActionCreator(text));
   }
 
     return (
@@ -19,7 +34,7 @@ const MyPosts = (props) => {
                 <h2>My posts</h2>
             </div>
             <form onSubmit={(e) => addPost(e)}>
-                <textarea ref={newPostElement} cols="30" rows="10"></textarea>
+                <textarea onChange={updateTextareaText} ref={newPostElement} value={props.newText} cols="30" rows="10" />
                 <input className={classes.profile__button + ' button'} type="submit" value="Send"/>
             </form>
             <div>
@@ -27,6 +42,6 @@ const MyPosts = (props) => {
             </div>
         </div>
     )
-};
+}
 
 export default MyPosts;
