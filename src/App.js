@@ -12,11 +12,11 @@ const App = (props) => {
   return (
     <div className="wrapper">
       <Header />
-      <Navbar friends={props.state.navbarList.friends}/>
+      <Navbar friends={props.state.navbarReducer.friends}/>
       <div className='content'>
         <Routes>
-          <Route element={<Profile posts={props.state.profilePage} dispatch={props.dispatch} />} path="/profile" />
-          <Route element={<Dialogs dialogs={props.state.dialogsPage} dispatch={props.dispatch} />} path="/dialogues" />
+          <Route element={<Profile posts={props.state.profileReducer} dispatch={props.dispatch} />} path="/profile" />
+          <Route element={<Dialogs dialogs={props.state.dialogsReducer} dispatch={props.dispatch} />} path="/dialogues" />
           <Route element={<News />} path="/news" />
           <Route element={<Music />} path="/music" />
           <Route element={<Settings />} path="/settings" />

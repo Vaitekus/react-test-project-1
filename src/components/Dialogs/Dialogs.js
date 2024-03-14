@@ -2,7 +2,7 @@ import classes from './Dialogs.module.css'
 import Name from "./Name/Name";
 import Message from "./Message/Message";
 import React from "react";
-import {addMessageActionCreator, updateMessageTextActionCreator} from "../../redux/store";
+import {addMessageActionCreator, updateMessageTextActionCreator} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
   let nameElements = props.dialogs.names.map(

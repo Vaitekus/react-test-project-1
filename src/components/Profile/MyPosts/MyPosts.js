@@ -1,31 +1,19 @@
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from "react";
-import {addPostActionCreator, updatePostTextActionCreator} from "../../../redux/store";
 
-// let addPostActionCreator = () => {
-//   return {
-//     type: 'ADD-POST'
-//   }
-// }
-//
-// let updateTextActionCreator = (text) => {
-//   return {
-//     type: 'UPDATE-NEW-POST-TEXT',
-//     newText: text
-//   }
-// }
 const MyPosts = (props) => {
   let postsElements = props.posts.map( (post, index) => <Post message={post.text} key={index}/>);
   let newPostElement = React.createRef();
 
-  let addPost = () => {
-    props.dispatch(addPostActionCreator());
+  let addPost = (event) => {
+    event.preventDefault();
+    props.addPost();
   }
 
   let updateTextareaText = () => {
     let text = newPostElement.current.value;
-    props.dispatch(updatePostTextActionCreator(text));
+    props.updateNewPostText(text);
   }
 
     return (

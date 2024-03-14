@@ -1,14 +1,15 @@
 import './index.css';
 // import state, {addPost, subscribe, updateTextareaText} from './redux/state';
-import store from './redux/store';
+//import store from './redux/store';
+import store from './redux/redux-store';
 import ReactDOM from "react-dom/client";
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 let renderTree = (state) => {
-  const root = ReactDOM.createRoot(document.getElementById('root'));
 
   root.render(
     <React.StrictMode>
@@ -25,4 +26,6 @@ let renderTree = (state) => {
 }
 
 renderTree(store.getState());
-store.subscribe(renderTree);
+store.subscribe(() => {
+  renderTree(store.getState());
+});

@@ -1,9 +1,6 @@
-const type = {
-  ADD_POST: 'ADD-POST',
-  UPDATE_NEW_POST_TEXT: 'UPDATE-NEW-POST-TEXT',
-  ADD_MESSAGE: 'ADD_MESSAGE',
-  UPDATE_NEW_MESSAGE_TEXT: 'UPDATE_NEW_MESSAGE_TEXT'
-}
+import {profileReducer} from "./profile-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
+import {navbarReducer} from "./navbar-reducer";
 
 let store = {
   _state: {
@@ -51,35 +48,11 @@ let store = {
     this._callSubscriber = observer;
   },
   dispatch(action) {
-    if(action.type === type.ADD_POST) {
-      this._state.profilePage.posts.push({
-        id: 5,
-        text: this._state.profilePage.textareaText,
-        likesCount: 0
-      });
-      this._state.profilePage.textareaText = '';
-      this._callSubscriber(this._state);
-    } else if(action.type === type.UPDATE_NEW_POST_TEXT) {
-      this._state.profilePage.textareaText = action.newText;
-      this._callSubscriber(this._state);
-    } else if(action.type === type.ADD_MESSAGE) {
-      this._state.dialogsPage.messages.push({
-        id: 4,
-        text: this._state.dialogsPage.textareaText,
-        isOwner: false
-      });
-      this._state.dialogsPage.textareaText = '';
-      this._callSubscriber(this._state);
-    } else if(action.type === type.UPDATE_NEW_MESSAGE_TEXT) {
-      this._state.dialogsPage.textareaText = action.newText;
-      this._callSubscriber(this._state);
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._state.navbarList = navbarReducer(this._state.navbarList, action);
+
+    this._callSubscriber(this._state);
   }
 }
-
-export const addPostActionCreator = () => ({ type: type.ADD_POST })
-export const updatePostTextActionCreator = (text) => ({type: type.UPDATE_NEW_POST_TEXT, newText: text})
-
-export const addMessageActionCreator = () => ({ type: type.ADD_MESSAGE })
-export const updateMessageTextActionCreator = (text) => ({type: type.UPDATE_NEW_MESSAGE_TEXT, newText: text})
 export default store;
