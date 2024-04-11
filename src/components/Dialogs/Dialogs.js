@@ -2,7 +2,6 @@ import classes from './Dialogs.module.css'
 import Name from "./Name/Name";
 import Message from "./Message/Message";
 import React from "react";
-import {addMessageActionCreator, updateMessageTextActionCreator} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
   let nameElements = props.dialogs.names.map(
@@ -15,10 +14,11 @@ const Dialogs = (props) => {
 
   let updateTextareaText = () => {
     let text = newMessageElement.current.value;
-    props.dispatch(updateMessageTextActionCreator(text));
+    props.changeMessage(text);
   }
-  let addMessage = () => {
-    props.dispatch(addMessageActionCreator());
+  let addMessage = (event) => {
+    event.preventDefault();
+    props.addMessage();
   }
   return (
     <div className={classes.messages}>

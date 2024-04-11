@@ -1,0 +1,51 @@
+.container {
+  display: grid;
+  grid-template-areas:
+  "icon info"
+  "button info";
+  grid-template-rows: auto auto;
+  grid-template-columns: 100px auto;
+  grid-gap: 16px;
+  margin: 0 0 16px;
+}
+
+.icon {
+  grid-area: icon;
+  font-size: 84px;
+}
+
+.button {
+  grid-area: button;
+}
+
+.button button {
+  width: 100%;
+}
+
+.info {
+  grid-area: info;
+  min-width: 100%;
+  border: 1px solid darkgray;
+  padding: 16px;
+  outline: none;
+
+  display: grid;
+  grid-template-areas:
+  "name . location"
+  "text text text";
+  grid-template-rows: auto auto;
+  grid-template-columns: 50px auto 100px;
+  grid-gap: 16px;
+}
+
+.name {
+  grid-area: name;
+}
+
+.location {
+  grid-area: location;
+}
+
+.text {
+  grid-area: text;
+}

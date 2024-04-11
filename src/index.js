@@ -7,14 +7,17 @@ import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-let renderTree = (state) => {
+// let renderTree = (state) => {
 
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App state={state} dispatch={store.dispatch.bind(store)} />
+        <Provider store={store}>
+          <App store={store} state={store.getState()} />
+        </Provider>
       </BrowserRouter>
     </React.StrictMode>
   );
@@ -23,9 +26,9 @@ let renderTree = (state) => {
   // to log results (for example: reportWebVitals(console.log))
   // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
   reportWebVitals();
-}
+// }
 
-renderTree(store.getState());
-store.subscribe(() => {
-  renderTree(store.getState());
-});
+// renderTree(store.getState());
+// store.subscribe(() => {
+//   renderTree(store.getState());
+// });

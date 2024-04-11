@@ -13,6 +13,7 @@ const Navbar = (props) => {
           <li><NavLink to="/news" className={({ isActive }) => isActive ? classes.active: ""}>News</NavLink></li>
           <li><NavLink to="/music" className={({ isActive }) => isActive ? classes.active: ""}>Music</NavLink></li>
           <li><NavLink to="/settings" className={({ isActive }) => isActive ? classes.active: ""}>Settings</NavLink></li>
+          <li><NavLink to="/users" className={({ isActive }) => isActive ? classes.active: ""}>Find User</NavLink></li>
         </ul>
           <h2>Friends</h2>
           <div className={classes.list}>
