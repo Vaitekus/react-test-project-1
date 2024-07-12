@@ -1,21 +1,8 @@
-import {addMessageActionCreator, updateMessageTextActionCreator} from "../../redux/dialogs-reducer";
+import {addMessageActionCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-
-// const DialogsContainer = (props) => {
-//   let state = props.store.getState();
-//   let addMessage = () => {
-//     props.store.dispatch(addMessageActionCreator());
-//   }
-//
-//   let changeMessage = (text) => {
-//     props.store.dispatch(updateMessageTextActionCreator(text));
-//   }
-//
-//   return (
-//     <Dialogs changeMessage={changeMessage} addMessage={addMessage} dialogs={state.dialogsReducer}/>
-//   )
-// }
+import {WithAuthRedirectComponent} from "../../hoc/AuthRedirect";
+import {compose} from "redux";
 
 let propsItems = (state) => {
   return{
@@ -25,14 +12,16 @@ let propsItems = (state) => {
 
 let callbackItems = (dispatch) => {
   return {
-    changeMessage: (text) => {
-      dispatch(updateMessageTextActionCreator(text))
-    },
-    addMessage: () => {
-      dispatch(addMessageActionCreator())
+    addMessage: (text) => {
+      dispatch(addMessageActionCreator(text))
     }
   }
 }
 
-const DialogsContainer = connect(propsItems, callbackItems)(Dialogs)
-export default DialogsContainer;
+// let AuthRedirectComponent = WithAuthRedirectComponent(Dialogs);
+//
+// const DialogsContainer = connect(propsItems, callbackItems)(AuthRedirectComponent)
+export default compose(
+  connect(propsItems, callbackItems),
+  WithAuthRedirectComponent
+) (Dialogs);

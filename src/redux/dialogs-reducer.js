@@ -1,6 +1,5 @@
 const type = {
-  ADD_MESSAGE: 'ADD_MESSAGE',
-  UPDATE_NEW_MESSAGE_TEXT: 'UPDATE_NEW_MESSAGE_TEXT'
+  ADD_MESSAGE: 'ADD_MESSAGE'
 }
 
 let initialState = {
@@ -16,8 +15,7 @@ let initialState = {
     {id: 1, text: "Hi", isOwner: false},
     {id: 2, text: "How are you?", isOwner: true},
     {id: 3, text: "I am fine", isOwner: false}
-  ],
-  textareaText: ''
+  ]
 }
 
 export const dialogsReducer = (state = initialState, action) => {
@@ -26,18 +24,12 @@ export const dialogsReducer = (state = initialState, action) => {
       return {
         ...state,
         names: [...state.names],
-        messages: [...state.messages, {id: 4, text: state.textareaText, isOwner: false}],
+        messages: [...state.messages, {id: 4, text: action.newMessage.message, isOwner: false}],
         textareaText: ''
       };
-    case type.UPDATE_NEW_MESSAGE_TEXT:
-      return {
-        ...state,
-        textareaText: action.newText
-      }
     default:
       return state;
   }
 }
 
-export const addMessageActionCreator = () => ({ type: type.ADD_MESSAGE })
-export const updateMessageTextActionCreator = (text) => ({type: type.UPDATE_NEW_MESSAGE_TEXT, newText: text})
+export const addMessageActionCreator = (text) => ({ type: type.ADD_MESSAGE, newMessage: text })

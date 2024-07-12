@@ -70,6 +70,13 @@ button, input[type="submit"] {
   cursor: pointer;
 }
 
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea{
+  border: 1px solid grey;
+}
+
 input:focus, input:active,
 button:focus, button:active {
   outline: none;
@@ -119,6 +126,13 @@ input[type="submit"],
   color: white;
   padding: 10px 16px;
   border-radius: 4px;
+}
+
+button:disabled,
+input[type="submit"]:disabled,
+.button:disabled{
+  background: rgba(68, 0, 0, 0.73);
+  cursor: none;
 }
 
 a {

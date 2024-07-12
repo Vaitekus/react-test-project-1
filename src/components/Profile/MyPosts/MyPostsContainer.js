@@ -1,4 +1,4 @@
-import {addPostActionCreator, updatePostTextActionCreator} from "../../../redux/profile-reducer";
+import {addPost} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
@@ -11,11 +11,8 @@ let propsItems = (state) => {
 
 let callbackItems = (dispatch) => {
   return {
-    updateNewPostText: (text) => {
-      dispatch(updatePostTextActionCreator(text))
-    },
-    addPost: () => {
-      dispatch(addPostActionCreator())
+    addPost: (text) => {
+      dispatch(addPost(text))
     }
   }
 }

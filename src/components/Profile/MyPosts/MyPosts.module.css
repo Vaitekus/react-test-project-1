@@ -22,13 +22,9 @@
   margin-bottom: 24px;
 }
 
-.profile__edit textarea{
+.profile__edit :global(.form__control){
   grid-area: textarea;
-  min-width: 100%;
-  border: 1px solid darkgray;
   margin: 0 0 16px;
-  padding: 16px;
-  outline: none;
 }
 
 .profile__button{

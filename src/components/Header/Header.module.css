@@ -2,4 +2,8 @@
     grid-area: header;
     background: lightgray;
     padding: 10px 12px;
+
+  display: grid;
+  grid-template-rows: 100px 1fr;
+  grid-template-columns: 2fr auto;
   }

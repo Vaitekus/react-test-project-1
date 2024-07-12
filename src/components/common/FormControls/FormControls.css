@@ -1,0 +1,25 @@
+.form__control {
+  width: 100%;
+}
+
+.form__control.error input,
+.form__control.error textarea {
+  border-color: red;
+}
+
+.form__control.error p {
+  color: red;
+}
+
+.form__control textarea {
+  min-width: 100%;
+  border: 1px solid darkgray;
+  padding: 16px;
+  outline: none;
+  vertical-align: top;
+}
+
+.validation__message {
+  padding: 4px;
+  background-color: lightpink;
+}

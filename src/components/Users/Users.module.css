@@ -1,0 +1,8 @@
+ul li {
+  display: inline-grid;
+  padding: 0 4px 6px;
+  cursor: pointer;
+}
+.selected {
+  font-weight: bold;
+}
