@@ -2,17 +2,19 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
-import {Route, Routes} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from './components/Profile/ProfileContainer';
 import Settings from "./components/Settings/Settings";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/Login/LoginContainer";
-import React from "react";
-import {connect} from "react-redux";
+import React, {lazy} from "react";
+import {connect, Provider} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader";
+import store from "./redux/redux-store";
+
+const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer.js'));
+const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer.js'));
 
 class App extends React.Component {
   componentDidMount() {
@@ -24,46 +26,47 @@ class App extends React.Component {
     }
     return (
       <div className="wrapper">
-        <HeaderContainer />
+        <HeaderContainer/>
         <Navbar friends={this.props.state.navbarReducer.friends}/>
         <div className='content'>
           <Routes>
-            <Route element={<ProfileContainer store={this.props.store} />} path="/profile/:id?" />
-            <Route element={<DialogsContainer store={this.props.store} />} path="/dialogues" />
-            <Route element={<News />} path="/news" />
-            <Route element={<Music />} path="/music" />
-            <Route element={<Settings />} path="/settings" />
-            <Route element={<UsersContainer />} path="/users" />
-            <Route element={<LoginContainer />} path="/login" />
+            <Route path="/profile/:id?" element={
+                <React.Suspense fallback={<p>Loading...</p>}>
+                  <ProfileContainer store={this.props.store}/>
+                </React.Suspense>}
+            ></Route>
+            <Route path="/dialogues" element={
+              <React.Suspense fallback={<p>Loading...</p>}>
+                <DialogsContainer store={this.props.store}/>
+              </React.Suspense>}
+            ></Route>
+            <Route element={<News/>} path="/news"/>
+            <Route element={<Music/>} path="/music"/>
+            <Route element={<Settings/>} path="/settings"/>
+            <Route element={<UsersContainer/>} path="/users"/>
+            <Route element={<LoginContainer/>} path="/login"/>
           </Routes>
         </div>
       </div>
     );
   }
 }
-// const App = (props) => {
-//   return (
-//     <div className="wrapper">
-//       <HeaderContainer />
-//       <Navbar friends={props.state.navbarReducer.friends}/>
-//       <div className='content'>
-//         <Routes>
-//           <Route element={<ProfileContainer store={props.store} />} path="/profile/:id?" />
-//           <Route element={<DialogsContainer store={props.store} />} path="/dialogues" />
-//           <Route element={<News />} path="/news" />
-//           <Route element={<Music />} path="/music" />
-//           <Route element={<Settings />} path="/settings" />
-//           <Route element={<UsersContainer />} path="/users" />
-//           <Route element={<LoginContainer />} path="/login" />
-//         </Routes>
-//       </div>
-//     </div>
-//   );
-// };
 
 const mapStateToProps = (state) =>  {
   return {
     initialized : state.appReducer.initialized
   }
 }
-export default connect(mapStateToProps, {initializeApp})(App);
+
+const AppHolder =  connect(mapStateToProps, {initializeApp})(App);
+
+const AppContainer = (props) => {
+  return <BrowserRouter>
+    <Provider store={store}>
+      <AppHolder store={store} state={store.getState()} />
+    </Provider>
+  </BrowserRouter>
+}
+
+
+export default AppContainer;

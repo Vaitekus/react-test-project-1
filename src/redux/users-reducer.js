@@ -1,13 +1,13 @@
 import {usersAPI} from "../api/api";
 
 const type = {
-  TOGGLE: 'TOGGLE',
-  SET_USERS: 'SET-USERS',
-  SET_TOTAL_COUNT: 'SET-TOTAL-COUNT',
-  SET_CURRENT_PAGE: 'SET-CURRENT-PAGE',
-  TOGGLE_LOADER: 'TOGGLE-LOADER',
-  TOGGLE_FOLLOWING_DISABLE: 'TOGGLE-FOLLOWING-BUTTON',
-  SET_FOLLOWING_DISABLE: 'SET-FOLLOWING-DISABLE'
+  TOGGLE: 'USERS/TOGGLE',
+  SET_USERS: 'USERS/SET-USERS',
+  SET_TOTAL_COUNT: 'USERS/SET-TOTAL-COUNT',
+  SET_CURRENT_PAGE: 'USERS/SET-CURRENT-PAGE',
+  TOGGLE_LOADER: 'USERS/TOGGLE-LOADER',
+  TOGGLE_FOLLOWING_DISABLE: 'USERS/TOGGLE-FOLLOWING-BUTTON',
+  SET_FOLLOWING_DISABLE: 'USERS/SET-FOLLOWING-DISABLE'
 }
 
 let initialState = {
@@ -89,36 +89,32 @@ export const setTotalCount = (totalCount) => ({ type: type.SET_TOTAL_COUNT, tota
 export const setCurrentPage = (currentPage) => ({ type: type.SET_CURRENT_PAGE, currentPage })
 export const toggleLoaderState = (state) => ({ type: type.TOGGLE_LOADER, state })
 
-export const getUsers = (currentPage, pageSize) => {
-  return (dispatch) => {
-    dispatch(toggleLoaderState(true));
-    usersAPI.getUsers(currentPage, pageSize).then((response) => {
-      dispatch(toggleLoaderState(false));
-      dispatch(setUsers(response.items));
-      dispatch(setTotalCount( response.totalCount));
-      dispatch(setFollowingDisable());
-    })
-  }
+export const getUsers = (currentPage, pageSize) => async (dispatch) => {
+  dispatch(toggleLoaderState(true));
+
+  let response = await usersAPI.getUsers(currentPage, pageSize);
+  dispatch(toggleLoaderState(false));
+  dispatch(setUsers(response.items));
+  dispatch(setTotalCount( response.totalCount));
+  dispatch(setFollowingDisable());
 }
 
-export const toggleFollowButton = (userId, followedUser) => {
-  return (dispatch) => {
+export const toggleFollowButton = (userId, followedUser) => async (dispatch) => {
     dispatch(toggleFollowingDisable(userId));
 
     if(followedUser) {
-      usersAPI.unfollowUser(userId).then((response) => {
-        if(response.resultCode === 0){
-          dispatch(toggleState(userId));
-          dispatch(toggleFollowingDisable(userId));
-        }
-      })
+      let response = await usersAPI.unfollowUser(userId);
+
+      if(response.resultCode === 0){
+        dispatch(toggleState(userId));
+        dispatch(toggleFollowingDisable(userId));
+      }
     } else {
-      usersAPI.followUser(userId).then((response) => {
-        if(response.resultCode === 0){
-          dispatch(toggleState(userId));
-          dispatch(toggleFollowingDisable(userId));
-        }
-      })
+      let response = await usersAPI.followUser(userId);
+
+      if(response.resultCode === 0){
+        dispatch(toggleState(userId));
+        dispatch(toggleFollowingDisable(userId));
+      }
     }
-  }
 }

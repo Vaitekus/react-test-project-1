@@ -10,7 +10,6 @@ import {
   useParams,
 } from "react-router-dom";
 import {connect} from "react-redux";
-// import {WithAuthRedirectComponent} from "../../hoc/AuthRedirect"
 import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
@@ -18,7 +17,6 @@ class ProfileContainer extends React.Component {
     let userId = this.props.router.params.id;
 
     if(!userId) {
-      //userId = 2;
       userId = this.props.userId;
     }
     this.props.getUserData(userId);
@@ -60,5 +58,4 @@ let propsItems = (state) => {
 export default compose(
   connect(propsItems, {getUserData, getUserStatus, updateUserStatus}),
   withRouter
-  // , WithAuthRedirectComponent
 ) (ProfileContainer)

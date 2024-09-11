@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const instance = axios.create({
   baseURL: "https://social-network.samuraijs.com/api/1.0/",
   withCredentials: true,
@@ -36,6 +37,10 @@ export const profileAPI = {
   updateStatus(statusText) {
     return instance.put(`/profile/status`, {status: statusText})
       .then(response => response.data)
+  },
+  deleteUser(userId) {
+    return instance.delete(`profile/${userId}`
+    ).then(response => response.data)
   }
 }
 

@@ -26,7 +26,7 @@ const Dialogs = (props) => {
     (message, index) => <Message text={message.text} isOwner={message.isOwner} key={index}/>);
 
   let addMessage = (text) => {
-    props.addMessage(text);
+    props.addMessage(text.message);
   }
 
   if (!props.isAuth) {

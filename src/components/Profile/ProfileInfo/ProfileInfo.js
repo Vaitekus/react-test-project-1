@@ -1,27 +1,24 @@
 import classes from './ProfileInfo.module.css';
-import ProfileStatus from "./ProfileStatus";
 import Preloader from "../../common/Preloader";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
-const ProfileInfo = (props) => {
-  if(!props.profile) {
+const ProfileInfo = ({profile, status, updateStatus}) => {
+  if(!profile) {
     return <Preloader />
   }
 
   return (
     <div className={classes.profile__info}>
-      {/*<img className={classes.profile__banner}*/}
-      {/*     src="https://washington.org/sites/default/files/styles/generic_hero_banner_1920_x_820/public/old-town-alexandria-king-street_credit-k-summerer-visit-alexandria.jpg.webp?itok=JB3y1FeX"*/}
-      {/*     alt=""/>*/}
       <img className={classes.profile__avatar} width="150" height="150"
-           src={props.profile.photos.small} alt=""/>
+           src={profile.photos.small} alt=""/>
       <div className={classes.profile__description}>
-        <h2>{props.profile.fullName}</h2>
-        <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
-        { props.profile.lookingForAJobDescription ? <p>{props.profile.lookingForAJobDescription}</p> : null}
-        { props.profile.contacts.facebook ? <p>{props.profile.contacts.facebook}</p> : null}
-        { props.profile.contacts.twitter ? <p>{props.profile.contacts.twitter}</p> : null}
-        { props.profile.contacts.github ? <p>{props.profile.contacts.github}</p> : null}
-        { props.profile.contacts.youtube ? <p>{props.profile.contacts.youtube}</p> : null}
+        <h2>{profile.fullName}</h2>
+        <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+        { profile.lookingForAJobDescription ? <p>{profile.lookingForAJobDescription}</p> : null}
+        { profile.contacts.facebook ? <p>{profile.contacts.facebook}</p> : null}
+        { profile.contacts.twitter ? <p>{profile.contacts.twitter}</p> : null}
+        { profile.contacts.github ? <p>{profile.contacts.github}</p> : null}
+        { profile.contacts.youtube ? <p>{profile.contacts.youtube}</p> : null}
       </div>
     </div>
   )

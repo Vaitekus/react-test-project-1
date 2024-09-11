@@ -1,24 +1,14 @@
 import './index.css';
-// import state, {addPost, subscribe, updateTextareaText} from './redux/state';
-//import store from './redux/store';
-import store from './redux/redux-store';
 import ReactDOM from "react-dom/client";
 import React from "react";
-import {BrowserRouter} from "react-router-dom";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {Provider} from "react-redux";
+import AppContainer from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-// let renderTree = (state) => {
 
   root.render(
     <React.StrictMode>
-      <BrowserRouter>
-        <Provider store={store}>
-          <App store={store} state={store.getState()} />
-        </Provider>
-      </BrowserRouter>
+      <AppContainer />
     </React.StrictMode>
   );
 
@@ -27,8 +17,3 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
   // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
   reportWebVitals();
 // }
-
-// renderTree(store.getState());
-// store.subscribe(() => {
-//   renderTree(store.getState());
-// });

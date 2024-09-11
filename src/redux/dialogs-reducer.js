@@ -1,5 +1,5 @@
 const type = {
-  ADD_MESSAGE: 'ADD_MESSAGE'
+  ADD_MESSAGE: 'DIALOGS/ADD_MESSAGE'
 }
 
 let initialState = {
@@ -24,7 +24,7 @@ export const dialogsReducer = (state = initialState, action) => {
       return {
         ...state,
         names: [...state.names],
-        messages: [...state.messages, {id: 4, text: action.newMessage.message, isOwner: false}],
+        messages: [...state.messages, {id: 4, text: action.newMessage, isOwner: false}],
         textareaText: ''
       };
     default:

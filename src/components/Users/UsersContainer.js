@@ -17,14 +17,16 @@ import {
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    if(this.props.users.length === 0) {
-      this.props.getUsers(this.props.currentPage, this.props.pageSize);
+    const {users, currentPage, pageSize} = this.props;
+    if(users.length === 0) {
+      this.props.getUsers(currentPage, pageSize);
     }
   }
 
   changePage = (pageNumber) => {
+    const {pageSize} = this.props;
     this.props.setCurrentPage(pageNumber);
-    this.props.getUsers(pageNumber, this.props.pageSize);
+    this.props.getUsers(pageNumber, pageSize);
   }
   render() {
     if (this.props.isLoading) {
@@ -43,17 +45,6 @@ class UsersContainer extends React.Component {
     }
   }
 }
-
-// let propsItems = (state) => {
-//   return {
-//     users: state.usersReducer.users,
-//     usersCount: state.usersReducer.totalUsersCount,
-//     pageSize: state.usersReducer.pageSize,
-//     currentPage: state.usersReducer.currentPage,
-//     isLoading: state.usersReducer.isLoading
-//   }
-// }
-
 let propsItems = (state) => {
   return {
     users: getUsersData(state),

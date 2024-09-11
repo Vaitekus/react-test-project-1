@@ -18,9 +18,6 @@ let callbackItems = (dispatch) => {
   }
 }
 
-// let AuthRedirectComponent = WithAuthRedirectComponent(Dialogs);
-//
-// const DialogsContainer = connect(propsItems, callbackItems)(AuthRedirectComponent)
 export default compose(
   connect(propsItems, callbackItems),
   WithAuthRedirectComponent

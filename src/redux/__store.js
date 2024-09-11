@@ -1,3 +1,5 @@
+/// Old version of store. It doesn't use in project
+
 import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
 import {navbarReducer} from "./navbar-reducer";

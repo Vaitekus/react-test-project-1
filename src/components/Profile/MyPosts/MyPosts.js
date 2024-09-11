@@ -16,13 +16,14 @@ const addPostForm = (props) => {
 }
 
 const AddPostReduxForm = reduxForm({form: "addPostForm"})(addPostForm);
-const MyPosts = (props) => {
+
+const MyPosts = React.memo((props) => {
   let postsElements = props.posts.map((post, index) => <Post message={post.text} key={index}/>);
 
   let addPost = (text) => {
-    props.addPost(text);
+    props.addPost(text.post);
   }
-
+  console.log("render");
     return (
         <div className={classes.profile__edit}>
             <div className={classes.profile__title}>
@@ -34,6 +35,6 @@ const MyPosts = (props) => {
             </div>
         </div>
     )
-}
+})
 
 export default MyPosts;

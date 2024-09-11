@@ -1,7 +1,7 @@
 import {getAuthUser} from "./auth-reducer";
 
 const type = {
-  SET_INITIALIZED: 'SET-INITIALIZED'
+  SET_INITIALIZED: 'APP/SET-INITIALIZED'
 }
 
 let initialState = {
@@ -22,12 +22,8 @@ export const appReducer = (state = initialState, action) => {
 
 export const setInitialized = () => ({ type: type.SET_INITIALIZED })
 
-export const initializeApp = () => {
-  return (dispatch) => {
-    let promise = dispatch(getAuthUser());
-    promise.then(() => {
-      dispatch(setInitialized());
-    })
-  }
+export const initializeApp = () => async (dispatch) => {
+  await dispatch(getAuthUser());
+  dispatch(setInitialized());
 }
 
