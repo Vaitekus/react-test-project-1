@@ -12,9 +12,12 @@ import {connect, Provider} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader";
 import store from "./redux/redux-store";
+import {WithLazyComponent} from "./hoc/Lazy";
 
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer.js'));
 const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer.js'));
+const DialogsComponent = WithLazyComponent(DialogsContainer);
+const ProfileComponent = WithLazyComponent(ProfileContainer);
 
 class App extends React.Component {
   componentDidMount() {
@@ -31,15 +34,11 @@ class App extends React.Component {
         <div className='content'>
           <Routes>
             <Route path="/profile/:id?" element={
-                <React.Suspense fallback={<p>Loading...</p>}>
-                  <ProfileContainer store={this.props.store}/>
-                </React.Suspense>}
-            ></Route>
+              <DialogsComponent store={this.props.store}/>
+            }></Route>
             <Route path="/dialogues" element={
-              <React.Suspense fallback={<p>Loading...</p>}>
-                <DialogsContainer store={this.props.store}/>
-              </React.Suspense>}
-            ></Route>
+              <ProfileComponent store={this.props.store}/>
+            }></Route>
             <Route element={<News/>} path="/news"/>
             <Route element={<Music/>} path="/music"/>
             <Route element={<Settings/>} path="/settings"/>
