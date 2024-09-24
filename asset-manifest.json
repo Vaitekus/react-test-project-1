@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/react-test-project-1/static/css/main.10f3c0ab.css",
+    "main.js": "/react-test-project-1/static/js/main.3d7c6921.js",
+    "static/js/453.68693753.chunk.js": "/react-test-project-1/static/js/453.68693753.chunk.js",
+    "static/css/979.fc003ff3.chunk.css": "/react-test-project-1/static/css/979.fc003ff3.chunk.css",
+    "static/js/979.26aa9315.chunk.js": "/react-test-project-1/static/js/979.26aa9315.chunk.js",
+    "static/css/132.97d0f251.chunk.css": "/react-test-project-1/static/css/132.97d0f251.chunk.css",
+    "static/js/132.db5fd2ed.chunk.js": "/react-test-project-1/static/js/132.db5fd2ed.chunk.js",
+    "static/media/tube-spinner.svg": "/react-test-project-1/static/media/tube-spinner.19cddf9c3d35a58be28c11861ae2b54a.svg",
+    "index.html": "/react-test-project-1/index.html",
+    "main.10f3c0ab.css.map": "/react-test-project-1/static/css/main.10f3c0ab.css.map",
+    "main.3d7c6921.js.map": "/react-test-project-1/static/js/main.3d7c6921.js.map",
+    "453.68693753.chunk.js.map": "/react-test-project-1/static/js/453.68693753.chunk.js.map",
+    "979.fc003ff3.chunk.css.map": "/react-test-project-1/static/css/979.fc003ff3.chunk.css.map",
+    "979.26aa9315.chunk.js.map": "/react-test-project-1/static/js/979.26aa9315.chunk.js.map",
+    "132.97d0f251.chunk.css.map": "/react-test-project-1/static/css/132.97d0f251.chunk.css.map",
+    "132.db5fd2ed.chunk.js.map": "/react-test-project-1/static/js/132.db5fd2ed.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.10f3c0ab.css",
+    "static/js/main.3d7c6921.js"
+  ]
+}
